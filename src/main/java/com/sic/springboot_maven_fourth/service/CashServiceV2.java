@@ -7,6 +7,7 @@ import com.sic.springboot_maven_fourth.entiy.CalGroupCoefficients;
 import com.sic.springboot_maven_fourth.pojo.Groupcoefficient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,11 +23,13 @@ public class CashServiceV2 {
         this.groupCoefficientDao = groupCoefficientDao;
     }
 
+    @Transactional
     public String getCash() {
         //step:1 先获取核算体规模系数
         List<Groupcoefficient> allData = groupCoefficientDao.getAllData();
         //step:2 allData传给一个entity用来计算所有数据
         List<Groupcoefficient> calGroupCoefficients = new CalGroupCoefficients(allData).getGroupcoefficients();
+        System.out.println(calGroupCoefficients);
         //step:3 更新核算体规模系数到数据库
         updateGroupcoefficient(calGroupCoefficients);
         //step:4 计算核算体规模系数

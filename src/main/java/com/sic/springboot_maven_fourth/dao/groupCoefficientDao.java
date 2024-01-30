@@ -10,10 +10,10 @@ import java.util.List;
 @Mapper
 public interface groupCoefficientDao {
 
-    @Select("SELECT * FROM groupcoefficient")
+    @Select("SELECT * FROM groupcoefficienttest")
     List<Groupcoefficient> getAllData();
 
-    @Update("update groupcoefficient set groupCoefficient = #{groupCoefficient} where `group` = #{group}")
+    @Update("UPDATE groupcoefficienttest SET revenueGold2Month=#{revenueGold2Month},groupCoefficient=#{groupCoefficient} WHERE `group`=#{group}")
     void updateGroupcoefficient(Groupcoefficient groupcoefficient);
 
 }
